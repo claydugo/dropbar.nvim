@@ -228,7 +228,7 @@ local function attach(buf)
   end
 
   vim.b[buf].dropbar_markdown_heading_parser_attached =
-    vim.api.nvim_create_autocmd(configs.opts.bar.update_events.buf, {
+    utils.compat.create_autocmd(configs.opts.bar.update_events.buf, {
       desc = 'Update markdown heading symbols on buffer change.',
       group = groupid,
       buffer = buf,
@@ -244,7 +244,7 @@ end
 ---@return nil
 local function detach(buf)
   if vim.b[buf].dropbar_markdown_heading_parser_attached then
-    vim.api.nvim_del_autocmd(
+    utils.compat.del_autocmd(
       vim.b[buf].dropbar_markdown_heading_parser_attached
     )
     vim.b[buf].dropbar_markdown_heading_parser_attached = nil

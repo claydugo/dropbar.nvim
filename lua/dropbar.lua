@@ -89,7 +89,7 @@ local function setup(opts)
   end
 
   if not vim.tbl_isempty(configs.opts.bar.update_events.win) then
-    vim.api.nvim_create_autocmd(configs.opts.bar.update_events.win, {
+    utils.compat.create_autocmd(configs.opts.bar.update_events.win, {
       group = groupid,
       callback = function(args)
         if args.event == 'WinResized' then
@@ -108,7 +108,7 @@ local function setup(opts)
   end
 
   if not vim.tbl_isempty(configs.opts.bar.update_events.buf) then
-    vim.api.nvim_create_autocmd(configs.opts.bar.update_events.buf, {
+    utils.compat.create_autocmd(configs.opts.bar.update_events.buf, {
       group = groupid,
       callback = function(args)
         utils.bar.exec('update', { buf = args.buf })
@@ -118,7 +118,7 @@ local function setup(opts)
   end
 
   if not vim.tbl_isempty(configs.opts.bar.update_events.global) then
-    vim.api.nvim_create_autocmd(configs.opts.bar.update_events.global, {
+    utils.compat.create_autocmd(configs.opts.bar.update_events.global, {
       group = groupid,
       callback = function()
         utils.bar.exec('update')

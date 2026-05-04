@@ -365,7 +365,7 @@ local function attach(buf)
 
   update_symbols(buf)
   vim.b[buf].dropbar_lsp_attached =
-    vim.api.nvim_create_autocmd(configs.opts.bar.update_events.buf, {
+    utils.compat.create_autocmd(configs.opts.bar.update_events.buf, {
       group = groupid,
       buffer = buf,
       callback = function(args)
@@ -382,7 +382,7 @@ local function detach(buf)
   end
 
   if vim.b[buf].dropbar_lsp_attached then
-    vim.api.nvim_del_autocmd(vim.b[buf].dropbar_lsp_attached)
+    utils.compat.del_autocmd(vim.b[buf].dropbar_lsp_attached)
     vim.b[buf].dropbar_lsp_attached = nil
     lsp_buf_symbols[buf] = nil
     for _, dropbar in pairs(_G.dropbar.bars[buf]) do
